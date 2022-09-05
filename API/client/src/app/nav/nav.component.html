@@ -1,40 +1,40 @@
-<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-   <div class="container">
-    <a class="navbar-brand" href="#">Dating App</a>
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
+  <div class="container">
+    <a class="navbar-brand" routerLink="/">Dating App</a>
 
-      <ul class="navbar-nav me-auto" *ngIf="currentAccount$ | async">
+    <ul class="navbar-nav me-auto" >
+      <ng-container *ngIf="currentAccount$ | async" dropdown>
         <li class="nav-item">
-          <a class="nav-link"  href="#">Matches</a>
+          <a class="nav-link" routerLink="/members" routerLinkActive="active">Matches</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Lists</a>
+          <a class="nav-link" routerLink="/lists" routerLinkActive="active">Lists</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Messages</a>
+          <a class="nav-link" routerLink="/messages" routerLinkActive="active">Messages</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" (click)="logOut()">LogOut</a>
-          </li>
-      </ul>
+      </ng-container>
+    </ul>
 
-      <div class="dropdown" *ngIf="currentAccount$ | async" dropdown>
-        <a class="dropdown-toggle text-light" dropdownToggle>Welcome User</a>
-        <div class="dropdown-menu mt-3" *dropdownMenu aria-labelledby="button-animated">
-            <a class="dropdown-item">Edit Profile</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" (click)="logOut()">LogOut</a>
+    <div class="dropdown" *ngIf="(currentAccount$ | async) as user" dropdown>
+      <a class="dropdown-toggle text-light" dropdownToggle>Welcome {{user.userName | titlecase}}</a>
+      <div class="dropdown-menu mt-3" *dropdownMenu aria-labelledby="button-animated">
+        <a class="dropdown-item">Edit Profile</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" (click)="logOut()">LogOut</a>
 
-        </div>
       </div>
-
-      <form *ngIf="(currentAccount$ | async) === null"#loginForm="ngForm" class="form-inline mt-2 mt-md-0" (ngSubmit)="login()" autocapitalize="off">
-        <input name="username" [(ngModel)]="model.username"
-        class="form-control  mr-ms-2 col-xs-3" type="text" placeholder="UserName"> &nbsp;&nbsp;
-        <input name="password" [(ngModel)]="model.password"
-        class="form-control mr-ms-2 col-xs-4" type="password" placeholder="Password">&nbsp;&nbsp;
-        <button class="btn btn-outline-success mr-ms-2" type="submit">Login</button>
-      </form>
     </div>
 
-  
-  </nav>
+    <form *ngIf="(currentAccount$ | async) === null" #loginForm="ngForm" class="form-inline mt-2 mt-md-0"
+      (ngSubmit)="login()" autocapitalize="off">
+      <input name="username" [(ngModel)]="model.username" class="form-control  mr-ms-2 col-xs-3" type="text"
+        placeholder="UserName"> &nbsp;&nbsp;
+      <input name="password" [(ngModel)]="model.password" class="form-control mr-ms-2 col-xs-4" type="password"
+        placeholder="Password">&nbsp;&nbsp;
+      <button class="btn btn-success mr-ms-2" type="submit">Login</button>
+    </form>
+  </div>
+
+
+</nav>
