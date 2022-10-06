@@ -5,6 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 using API.Data;
 using API.Entities;
 using API.DTOs;
+using API.Entities;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace API.Interface
 {

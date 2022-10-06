@@ -5,10 +5,11 @@ using Microsoft.EntityFrameworkCore;
 using API.Interface;
 using API.DTOs;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 
 namespace API.Controllers
 {
-  // [Authorize]
+   //[Authorize]
     public class UsersController : BaseApiController
     {
         private readonly IUserRepository _userRepository;
